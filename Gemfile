@@ -7,6 +7,7 @@ gem 'dm-postgres-adapter'
 gem 'sinatra'
 gem 'rspec-sinatra'
 gem 'pg'
+gem 'rack'
 
 # gem "rails"
 group :test do
