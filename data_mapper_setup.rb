@@ -7,6 +7,7 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bookmark
 
 require './app/models/link' # require each model individually - the path may vary depending on your file structure.
 require_relative 'app/models/tag'
+require_relative 'app/models/user'
 
 # After declaring your models, you should finalise them
 DataMapper.finalize
