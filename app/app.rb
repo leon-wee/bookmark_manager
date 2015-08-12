@@ -7,7 +7,7 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   set :session_secret, 'super secret'
-  set :views, proc { File.join(root, '..', 'views') }
+  set :views, proc { File.join(root, '..', 'app', 'views') }
   use Rack::MethodOverride
 
   get '/links' do
