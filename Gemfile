@@ -9,6 +9,7 @@ gem 'rspec-sinatra'
 gem 'pg'
 gem 'rack'
 gem 'bcrypt'
+gem 'sinatra-flash'
 
 # gem "rails"
 group :test do
