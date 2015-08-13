@@ -3,6 +3,7 @@ feature 'Password reset' do
     user = create(:user)
     visit '/users/password_reset'
     fill_in 'Email', with: user.email
+    expect(SendResetEmail).to receive(:call)
     click_button 'Reset password'
     user = User.first(email: user.email)
     expect(user.password_token).not_to be_nil
