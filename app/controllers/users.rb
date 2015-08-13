@@ -25,13 +25,9 @@ class BookmarkManager < Sinatra::Base
 
   post '/users/password_reset' do
     user = User.first(email: params[:Email])
-    user.password_token = "DMFYOMLYCESXAFPYFRATHPTKLULDPOVIHUIOZIIPSRLCQV"
-    user.save
+    user.update(password_token: rand_token)
     flash[:notice] = 'Check your emails'
   end
-
-
-
 
 
 end
