@@ -8,10 +8,7 @@ class BookmarkManager < Sinatra::Base
     link = Link.new(url: params[:url], title: params[:title])
     tags_list = params[:tags].split
     redirect '/links/new' if tags_list.empty?
-    tags_list.each do |each_tag|
-      tag = Tag.create(name: each_tag)
-      link.tags << tag
-    end
+    tags_list.each { |each_tag| link.tags << Tag.create(name: each_tag) }
     link.save
     redirect '/links'
   end

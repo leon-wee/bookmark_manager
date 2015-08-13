@@ -17,6 +17,10 @@ feature 'Viewing links' do
                 tags: [Tag.first_or_create(name: 'bubbles')])
   end
 
+  scenario 'home page should redirect to links page' do
+    visit '/'
+    expect(current_path).to eq('/links')
+  end
 
   scenario 'I can see existing links on the links page' do
     Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
