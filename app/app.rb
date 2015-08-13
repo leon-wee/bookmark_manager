@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require_relative 'data_mapper_setup'
 require_relative 'controllers/init'
+require_relative 'helpers/app_helper'
 
 
 class BookmarkManager < Sinatra::Base
@@ -11,5 +12,7 @@ class BookmarkManager < Sinatra::Base
   set :session_secret, 'super secret'
   set :views, proc { File.join(root, '..', 'views') }
   use Rack::MethodOverride
+
+  include ApplicationHelpers
 
 end

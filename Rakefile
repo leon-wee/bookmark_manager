@@ -1,4 +1,4 @@
-require_relative 'data_mapper_setup'
+require_relative 'app/data_mapper_setup'
 
 task :auto_migrate do
   DataMapper.auto_migrate!
