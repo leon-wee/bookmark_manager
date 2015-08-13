@@ -29,5 +29,9 @@ class BookmarkManager < Sinatra::Base
     flash[:notice] = 'Check your emails'
   end
 
+  get '/users/password_reset/:token' do
+    erb :'users/change_password'
+  end
+
 
 end
