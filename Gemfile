@@ -13,6 +13,8 @@ gem 'sinatra-flash'
 gem 'sinatra-partial'
 gem 'factory_girl'
 gem 'byebug'
+gem 'mailgun-ruby'
+gem 'rest-client'
 
 # gem "rails"
 group :test do
