@@ -9,7 +9,7 @@ feature 'User sign up' do
   # feature tests and we want to keep this example simple.
 
   scenario 'I can sign up as a new user' do
-    user = User.new(user_params)
+    user = build :user
     expect { sign_up(user) }.to change(User, :count).by(1)
     expect(page).to have_content("Welcome, #{user.email}")
     expect(user.email).to eq("#{user.email}")
@@ -81,13 +81,8 @@ end
 
 feature 'User sign in' do
 
-  let(:user) do
-    User.create(email: 'user@example.com',
-                password: 'secret1234',
-                password_confirmation: 'secret1234')
-  end
-
   scenario 'with correct credentials' do
+    user = create(:user)
     sign_in(email: user.email, password: user.password)
     expect(page).to have_content "Welcome, #{user.email}"
   end
@@ -95,13 +90,9 @@ feature 'User sign in' do
 end
 
 feature 'User signs out' do
-  before(:each) do
-    @user = User.create(email: 'test@test.com',
-                password: 'test',
-                password_confirmation: 'test')
-  end
 
   scenario 'while being signed in' do
+    @user = create(:user)
     sign_in(email: @user.email, password: @user.password)
     click_button 'Sign out'
     expect(page).to have_content('goodbye!')

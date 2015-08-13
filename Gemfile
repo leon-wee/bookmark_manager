@@ -11,6 +11,8 @@ gem 'rack'
 gem 'bcrypt'
 gem 'sinatra-flash'
 gem 'sinatra-partial'
+gem 'factory_girl'
+gem 'byebug'
 
 # gem "rails"
 group :test do

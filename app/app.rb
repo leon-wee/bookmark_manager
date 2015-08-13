@@ -3,6 +3,7 @@ require 'sinatra/flash'
 require_relative 'data_mapper_setup'
 require_relative 'controllers/init'
 require_relative 'helpers/app_helper'
+require 'byebug'
 
 
 class BookmarkManager < Sinatra::Base

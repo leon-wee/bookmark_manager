@@ -1,20 +1,34 @@
 require 'spec_helper'
 
-
 feature 'Viewing links' do
+  # let(:link) { build(:link, tags: [create(:tag, name: 'bubbles')]) }
+  # let(:link2) { build(:link, title: 'Bubble Bobble', tags: [create(:tag, name: 'bubbles')]) }
+
   before(:each) do
-    Link.create(url: 'http://www.makersacademy.com',
-                title: 'Makers Academy',
-                tags: [Tag.first_or_create(name: 'education')])
-    Link.create(url: 'http://www.google.com',
-                title: 'Google',
-                tags: [Tag.first_or_create(name: 'search')])
-    Link.create(url: 'http://www.zombo.com',
-                title: 'This is Zombocom',
-                tags: [Tag.first_or_create(name: 'bubbles')])
-    Link.create(url: 'http://www.bubble-bobble.com',
-                title: 'Bubble Bobble',
-                tags: [Tag.first_or_create(name: 'bubbles')])
+
+    # p attempt
+    # bubbles_tag = build(:tag, name: 'bubbles')
+    # p '------------------------'
+    tag = create(:tag, name: 'bubbles')
+    #create(:link, tags: [create(:tag, name: 'bubbles')])
+    create(:link, tags: [tag])
+    create(:link, title: 'Bubble Bobble', tags: [tag])
+    # create(:link, title: 'Bubble Bobble', tags: [create(:tag, name: 'bubbles')])
+    # p '------------------------'
+
+    # create(:link, tags: bubble_tags)
+    # Link.create(url: 'http://www.makersacademy.com',
+    #             title: 'Makers Academy',
+    #             tags: [Tag.first_or_create(name: 'education')])
+    # Link.create(url: 'http://www.google.com',
+    #             title: 'Google',
+    #             tags: [Tag.first_or_create(name: 'search')])
+    # Link.create(url: 'http://www.zombo.com'
+    #             title: 'This is Zombocom',
+    #             tags: [Tag.first_or_create(name: 'bubbles')])
+    # Link.create(url: 'http://www.bubble-bobble.com',
+    #             title: 'Bubble Bobble',
+    #             tags: [Tag.first_or_create(name: 'bubbles')])
   end
 
   scenario 'home page should redirect to links page' do
@@ -23,7 +37,7 @@ feature 'Viewing links' do
   end
 
   scenario 'I can see existing links on the links page' do
-    Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
+    create(:link, url: 'http://www.makersacademy.com/', title: 'Makers Academy')
     visit '/links'
     expect(page.status_code).to eq 200
     within 'ul#links' do

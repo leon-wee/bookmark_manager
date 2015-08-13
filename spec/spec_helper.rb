@@ -4,6 +4,8 @@ require 'capybara/rspec'
 require './app/app'
 require 'database_cleaner'
 require_relative 'helpers/session'
+require 'factory_girl'
+require 'byebug'
 
 Capybara.app = BookmarkManager
 
@@ -26,6 +28,12 @@ Capybara.app = BookmarkManager
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  config.include FactoryGirl::Syntax::Methods
+
+  FactoryGirl.definition_file_paths = %w{./factories ./spec/factories}
+  FactoryGirl.find_definitions
+
 
   config.include SessionHelpers
   config.include Capybara::DSL
