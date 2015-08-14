@@ -1,13 +1,4 @@
 feature 'User sign up' do
-
-  # Strictly speaking, the tests that check the UI
-  # (have_content, etc.) should be separate from the tests
-  # that check what we have in the DB since these are separate concerns
-  # and we should only test one concern at a time.
-
-  # However, we are currently driving everything through
-  # feature tests and we want to keep this example simple.
-
   scenario 'I can sign up as a new user' do
     user = build :user
     expect { sign_up(user) }.to change(User, :count).by(1)
@@ -40,16 +31,6 @@ feature 'User sign up' do
     expect(page).to have_content('Email is already taken')
   end
 
-
-
-  def sign_up(user)
-    visit '/users/new'
-    fill_in :email, with: user.email
-    fill_in :password, with: user.password
-    fill_in :password_confirmation, with: user.password_confirmation
-    click_button 'Sign up'
-  end
-
   def sign_up(user)
     visit '/users/new'
     expect(page.status_code).to eq(200)
@@ -60,19 +41,15 @@ feature 'User sign up' do
   end
 end
 
-
 feature 'User sign in' do
-
   scenario 'with correct credentials' do
     user = create(:user)
     sign_in(email: user.email, password: user.password)
     expect(page).to have_content "Welcome, #{user.email}"
   end
-
 end
 
 feature 'User signs out' do
-
   scenario 'while being signed in' do
     @user = create(:user)
     sign_in(email: @user.email, password: @user.password)
@@ -80,6 +57,4 @@ feature 'User signs out' do
     expect(page).to have_content('goodbye!')
     expect(page).not_to have_content("Welcome, #{@user.email}")
   end
-
-
 end

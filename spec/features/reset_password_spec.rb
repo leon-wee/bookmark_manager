@@ -1,4 +1,5 @@
 feature 'Password reset' do
+
   scenario 'requesting a password reset' do
     user = create(:user)
     visit '/users/password_reset'
@@ -13,9 +14,20 @@ feature 'Password reset' do
   scenario 'resetting password' do
      user = create(:user)
      user.update(password_token: 'token')
-
      visit "/users/password_reset/#{user.password_token}"
      expect(page.status_code).to eq 200
      expect(page).to have_content 'Enter a new password'
-   end
+  end
+
+  scenario 'users can change password' do
+    user = create(:user)
+    user.update(password_token: 'token')
+    visit "/users/password_reset/#{user.password_token}"
+    fill_in("new password", with: "hello")
+    fill_in("password confirmation", with: "hello")
+    click_button 'Submit'
+    expect(page).to have_content("Welcome, #{user.email}")
+    sign_in(email: "#{user.email}", password: "potato")
+    expect(page).to have_content("The email or password is incorrect")
+  end
 end
