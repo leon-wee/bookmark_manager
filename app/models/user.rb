@@ -17,6 +17,7 @@ module BookmarkManager
       property :email, String, required: true
       property :password_digest, Text
       property :password_token, Text
+      has n, :links, through: Resource
 
       def password=(password)
         @password = password
