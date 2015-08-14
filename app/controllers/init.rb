@@ -1,6 +1,0 @@
-require_relative 'links'
-require_relative 'tags'
-require_relative 'users'
-require_relative 'sessions'
-require_relative 'homepage'
-require_relative '../../lib/send_reset_email'
