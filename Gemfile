@@ -15,6 +15,7 @@ gem 'factory_girl'
 gem 'byebug'
 gem 'mailgun-ruby'
 gem 'rest-client'
+gem 'sinatra-partial'
 
 # gem "rails"
 group :test do
