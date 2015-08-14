@@ -37,7 +37,7 @@ module BookmarkManager
 
       post "/users/password_reset_status" do
         user = User.first(password_token: session[:token])
-        if user.update(password: params[:password],
+        if user.update(password: params[:new_password],
                        password_confirmation: params[:password_confirmation],
                        password_token: nil)
           session[:user_id] = user.id

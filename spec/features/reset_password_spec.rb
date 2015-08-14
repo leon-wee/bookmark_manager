@@ -22,12 +22,27 @@ feature 'Password reset' do
     user = create(:user)
     user.update(password_token: 'token')
     visit "/users/password_reset/#{user.password_token}"
-    fill_in("new password", with: "hello")
-    fill_in("password confirmation", with: "hello")
+    fill_in("new_password", with: "hello")
+    fill_in("password_confirmation", with: "hello")
     click_button 'Submit'
     expect(page).to have_content("Welcome, #{user.email}")
+    click_button 'Sign out'
+    visit '/sessions/new'
     sign_in(email: "#{user.email}", password: "potato")
     expect(page).to have_content("The email or password is incorrect")
+  end
+
+  scenario 'users can sign in with new password' do
+    user = create(:user)
+    user.update(password_token: 'token')
+    visit "/users/password_reset/#{user.password_token}"
+    fill_in("new_password", with: "hello")
+    fill_in("password_confirmation", with: "hello")
+    click_button 'Submit'
+    click_button 'Sign out'
+    visit '/sessions/new'
+    sign_in(email: "#{user.email}", password: "hello")
+    expect(page).to have_content("Welcome, #{user.email}")
   end
 
   scenario 'users cannot access changing password page without token' do
