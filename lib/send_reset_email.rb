@@ -11,7 +11,7 @@ class SendResetEmail
   end
 
   def self.call(user)
-    RestClient.post "https://api:#{API_KEY}"\
+    self.get_rest.post "https://api:#{API_KEY}"\
     "@api.mailgun.net/v3/sandboxff8aca0bc0f34b9d9634d15a22e76460.mailgun.org/messages",
     :from => "Mailgun Sandbox <postmaster@sandboxff8aca0bc0f34b9d9634d15a22e76460.mailgun.org>",
     :to => "#{user.email}",
@@ -21,6 +21,10 @@ class SendResetEmail
     http://localhost:9292/users/password_reset/#{user.password_token}
 
     Bookmark Manager"
+  end
+
+  def self.get_rest
+    RestClient
   end
 
 
