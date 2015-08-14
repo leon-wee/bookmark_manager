@@ -29,4 +29,9 @@ feature 'Password reset' do
     sign_in(email: "#{user.email}", password: "potato")
     expect(page).to have_content("The email or password is incorrect")
   end
+
+  scenario 'users cannot access changing password page without token' do
+    visit "/users/password_reset/potato"
+    expect(page).not_to have_content('Enter a new password')
+  end
 end
