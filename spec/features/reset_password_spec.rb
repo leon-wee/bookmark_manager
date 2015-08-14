@@ -1,5 +1,4 @@
 feature 'Password reset' do
-
   scenario 'requesting a password reset' do
     user = create(:user)
     visit '/users/password_reset'
