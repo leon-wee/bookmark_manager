@@ -5,6 +5,7 @@ module BookmarkManager
       register Sinatra::Flash
       set :session_secret, 'super secret'
       set :views, proc { File.join(root, '..', 'views') }
+      set :public_folder, proc { File.join(root, '../..', 'public') }
       use Rack::MethodOverride
       include ApplicationHelpers
 
