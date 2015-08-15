@@ -16,5 +16,6 @@ module BookmarkManager
     use Routes::Sessions
     use Routes::Tags
     use Routes::Users
+    use Routes::Passwords
   end
 end
