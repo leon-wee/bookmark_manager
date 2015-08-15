@@ -33,9 +33,9 @@ feature 'Viewing links' do
   end
 
   scenario 'I can filter links by tag' do
+    tag = create(:tag,name: 'bubbles')
     user = build(:user)
     sign_up(user)
-    tag = create(:tag,name: 'bubbles')
     create(:link, url: 'http://www.zombocom.com', title: 'This is Zombocom', tags: [tag])
     create(:link, url: 'http://www.bubblebobble.com', title: 'Bubble Bobble', tags: [tag])
     visit '/tags/bubbles'
